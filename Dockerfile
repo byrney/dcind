@@ -10,7 +10,6 @@ RUN apk --no-cache add bash curl util-linux device-mapper py-pip python-dev libf
     curl https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz | tar zx && \
     mv /docker/* /bin/ && \
     chmod +x /bin/docker* && \
-    pip install docker-compose==${DOCKER_COMPOSE_VERSION} && \
     rm -rf /root/.cache
 
 
