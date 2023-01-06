@@ -13,6 +13,14 @@ RUN apk --no-cache add bash curl util-linux device-mapper py-pip python-dev libf
     pip install docker-compose==${DOCKER_COMPOSE_VERSION} && \
     rm -rf /root/.cache
 
+
+RUN curl -sSL -o /tmp/kubectl "https://dl.k8s.io/release/v1.26.0/bin/linux/amd64/kubectl" && \
+    install -o root -g root -m 0755 /tmp/kubectl /usr/local/bin/kubectl && \
+    rm /tmp/kubectl && \
+    curl -sSL -o /tmp/minikube https://storage.googleapis.com/minikube/releases/v1.28.0/minikube-linux-amd64 && \
+    install /tmp/minikube /usr/local/bin/minikube && \
+    rm /tmp/minikube
+
 # Include functions to start/stop docker daemon
 COPY docker-lib.sh /docker-lib.sh
 COPY entrypoint.sh /entrypoint.sh
